@@ -1,12 +1,12 @@
 import { CheckBox } from "@/components/FormElements";
+import { Product } from "@/types/Product";
 import { TableColumnsType } from "@/types/Table";
-import { User } from "@/types/User";
 
-export const tableColumns: TableColumnsType<User>[] = [
+export const tableColumns: TableColumnsType<Product>[] = [
     {
         title: "Select",
         key: "select",
-        width: "20%",
+        width: "7%",
         render: (props) => {
           return (
             <CheckBox onChange={props.onChange} data={props.data} chartData={props.chartData} />
@@ -14,27 +14,39 @@ export const tableColumns: TableColumnsType<User>[] = [
         }
     },
     {
-        title: "Username",
-        key: "user_name",
+        title: "Title",
+        key: "title",
         width: "20%",
-        render: (props) => props.data.user_name
+        render: (props) => props.data.title
     },
     {
-        title: "Email",
-        key: "email",
-        width: "20%",
-        render: (props) => props.data.email
+        title: "Description",
+        key: "description",
+        width: "28%",
+        render: (props) => props.data.description
     },
     {
-      title: "Orders",
-      key: "orders",
-      width: "20%",
-      render: (props) => props.data.orders
+      title: "Brand",
+      key: "brand",
+      width: "15%",
+      render: (props) => props.data.brand
     },
     {
-      title: "Contact number",
-      key: "contact_number",
-      width: "20%",
-      render: (props) => props.data.contact_number
+      title: "Category",
+      key: "category",
+      width: "14%",
+      render: (props) => props.data.category
+    },
+    {
+      title: "Price",
+      key: "price",
+      width: "8%",
+      render: (props) => props.data.price
+    },
+    {
+      title: "Rating",
+      key: "rating",
+      width: "8%",
+      render: (props) => props.data.rating
     }
 ];

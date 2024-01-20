@@ -1,4 +1,4 @@
-import { Oval } from "react-loader-spinner";
+import { Oval, ThreeDots } from "react-loader-spinner";
 
 export function MainLoader() {
     return (
@@ -74,5 +74,21 @@ export function RowLoader() {
           strokeWidthSecondary={4}
         />
       </div>
+  );
+}
+
+export function DotsLoader() {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <ThreeDots
+        height={60}
+        width={60}
+        color="var(--primary-orange)"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="three-dots-loading"
+      />
+    </div>
   );
 }

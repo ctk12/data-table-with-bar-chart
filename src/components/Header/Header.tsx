@@ -12,3 +12,6 @@ export function Header({ name }: { name: string; }) {
     </div>
   )
 }
+
+// 105.6 for sm
+// 121.36 for lg

@@ -16,12 +16,16 @@
         font-weight: 500;
         color: var(--text-normal);
         border-bottom: 1px solid var(--borders);
+        position: sticky;
+        top: 0;
     }
 
     &__body {
         font-size: 14px;
         font-weight: 500;
         color: var(--text-normal);
+        height: calc(100vh - 280px);
+        overflow-y: scroll;
     }
 
     &__head,
@@ -34,9 +38,7 @@
         & .tr {
             display: flex;
             gap: 20px;
-            min-height: 46px;
             align-items: center;
-            padding: 6px;
         }
     }
 }

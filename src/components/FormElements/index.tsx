@@ -1,10 +1,10 @@
 import { TitleTextD } from "@/shared/Typography";
-import { User } from "@/types/User";
+import { Product } from "@/types/Product";
 
 export const CheckBox = ({ onChange, data, chartData }:{
-    onChange: (name: string, data: User) => void;
-    data: User;
-    chartData: User[];
+    onChange: (name: string, data: Product) => void;
+    data: Product;
+    chartData: Product[];
 }) => {
     return (
         <input
@@ -31,7 +31,7 @@ export const SearchEl = ({ onChange }:{ onChange: (data: string) => void; }) => 
         className="shadow appearance-none border rounded mb-2 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="search"
         type="text"
-        placeholder="Search by username"
+        placeholder="Search"
       />
     );
 }

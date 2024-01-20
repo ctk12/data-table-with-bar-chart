@@ -4,7 +4,7 @@ function TableRow<T extends tableRowExtendObject>(props: TableRowProps<T>) {
   const { data, isLast, tableColumns } = props;
 
   const trStyle = {
-    padding: "6px",
+    padding: "10px",
     borderBottom: isLast ? "none" : "1px solid var(--borders)",
   };  
 

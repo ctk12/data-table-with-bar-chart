@@ -1,25 +1,25 @@
 import Plot from 'react-plotly.js';
 import * as Plotly from 'plotly.js';
-import { User } from '@/types/User';
+import { Product } from '@/types/Product';
 
 const layout = {
-  title: "Orders Chart", 
-  height: 400,   
+  title: "Products Chart", 
+  height: 500,   
   xaxis: {
-    title: "Users",
+    title: "Products",
   },
   yaxis: {
-    title: "Orders",
-    range: [0, 100]
+    title: "Prices",
+    range: [0, 2000]
   },
   responsive: true,
 };
 
-const BarChart = ({ userData }: { userData: User[] }) => {
+const BarChart = ({ productData }: { productData: Product[] }) => {
     const data: Plotly.Data[] = [
         {
-            x: userData.length > 0 ? userData.map(user => user.user_name) : [""],
-            y: userData.map(user => user.orders),
+            x: productData.length > 0 ? productData.map(product => product.title) : [""],
+            y: productData.map(product => product.price),
             type: "bar",
             width: 0.4
         },

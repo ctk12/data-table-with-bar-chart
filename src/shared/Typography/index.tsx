@@ -30,4 +30,10 @@ export const TitleTextD = styled.h5`
     color: var(--text-headings);
 `;
 
+export const TitleTextE = styled.h5`
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-headings);
+`;
+
 

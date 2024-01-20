@@ -1,5 +1,4 @@
 import { PaginationType } from "./ApiData";
-import { User } from "./User";
 
 export interface TableColumnsType<T extends tableRowExtendObject> {
     title: string;
@@ -11,13 +10,13 @@ export interface TableColumnsType<T extends tableRowExtendObject> {
 export interface TableRowProps<T extends tableRowExtendObject> {
     data: T;
     isLast: boolean;
-    onChange: (key: string, data: User) => void;
+    onChange: (key: string, data: T) => void;
     tableColumns: TableColumnsType<T>[];
     chartData: T[];
 }
 
 export interface tableRowExtendObject {
-    id: string
+    id: number;
 }
 
 export interface TablePropsType<T extends tableRowExtendObject> {
