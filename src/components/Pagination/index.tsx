@@ -43,8 +43,8 @@ const Pagination: React.FC<PaginationProps> = ({ paginationData, onPageChange })
           </li>
         ))}
       </ul>
-      <li className={`flex items-center h-8 justify-center rounded-md bg-gray-200 cursor-default ${currentPage === pageCount ? 'text-gray-400' : 'text-gray-800'}`}>
-          <button className='px-2 py-1' onClick={() => handlePageClick(currentPage + 1, "end")} disabled={currentPage === pageCount}>
+      <li className={`flex items-center h-8 justify-center rounded-md bg-gray-200 cursor-default ${currentPage === pageCount || items === 0 ? 'text-gray-400' : 'text-gray-800'}`}>
+          <button className='px-2 py-1' onClick={() => handlePageClick(currentPage + 1, "end")} disabled={currentPage === pageCount || items === 0}>
             <IoIosArrowForward />
           </button>
         </li>
