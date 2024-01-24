@@ -56,7 +56,6 @@ useEffect(() => {
   } else {
     const currentPageData = tempData[String(pagination.page)];
     setData(currentPageData);
-    setChartData(currentPageData.slice(0, 5));
   }
  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [pagination.page]);
