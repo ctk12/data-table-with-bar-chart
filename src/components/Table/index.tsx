@@ -23,7 +23,33 @@ function Table<T extends tableRowExtendObject>(props: TablePropsType<T>) {
                         width: `${data.width}`,
                     }}
                    >
-                    <TitleTextE>{data.title}</TitleTextE>
+                    {data.title === "Price" && (
+                      <div className="felx items-center justify-between">
+                        <TitleTextE>{data.title}</TitleTextE>
+                        <input
+                          onChange={(e) => paginationProps.changeChartFilter(e.target.value)}
+                          type="radio"
+                          value="Prices"
+                          name="chart"
+                          checked={paginationProps.chartFilter === "Prices"}
+                        />
+                      </div>
+                    )}
+                    {data.title === "Rating" && (
+                      <div className="felx items-center justify-between">
+                        <TitleTextE>{data.title}</TitleTextE>
+                        <input
+                          onChange={(e) => paginationProps.changeChartFilter(e.target.value)}
+                          type="radio"
+                          value="Ratings"
+                          name="chart"
+                          checked={paginationProps.chartFilter === "Ratings"}
+                        />
+                      </div>
+                    )}
+                    {data.title !== "Price" && data.title !== "Rating" && (
+                      <TitleTextE>{data.title}</TitleTextE>
+                    )}
                    </div>
                 )
               })}

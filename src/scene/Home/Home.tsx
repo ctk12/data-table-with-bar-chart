@@ -24,6 +24,9 @@ const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [activeTab, setActiveTab] = useState(false);
   const [init, setInit] = useState(false);
+  const [chartFilter, setChartFilter] = useState("Prices");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [tempData, setTempData] = useState<any>({});
 
   const handlePageChange = (newPage: number) => {
     setPagination(state => {
@@ -48,7 +51,13 @@ useEffect(() => {
 }, [chartData]);
 
 useEffect(() => {
-  fetchProducts();
+  if (!Object.keys(tempData).includes(String(pagination.page))) {
+    fetchProducts();
+  } else {
+    const currentPageData = tempData[String(pagination.page)];
+    setData(currentPageData);
+    setChartData(currentPageData.slice(0, 5));
+  }
  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [pagination.page]);
 
@@ -60,6 +69,7 @@ useEffect(() => {
         page: 1
       }
     });
+    setTempData({});
     if (init) {
       fetchProducts();
     }
@@ -86,6 +96,14 @@ const fetchProducts = async () => {
   const paramString = searchInput ? `/search?${queryParamFromObject(params)}` : `?${queryParamFromObject(params)}`;
   const result = await getProducts(paramString);
   setData(result.products);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setTempData((state: any) => {
+    return {
+      ...state,
+      [String(pagination.page)]: result.products
+    }
+  })
+  setChartData(result.products.slice(0, 5));
   setPagination(state => {
     return {
       ...state,
@@ -97,10 +115,14 @@ const fetchProducts = async () => {
   setFetchLoading(false);
 }
 
+  const changeChartFilter = (value: string) => {
+    setChartFilter(value)
+  }
+
   const columnsProps = {
     onChange,
     tableColumns: tableColumns,
-    chartData
+    chartData,
   }
 
   const paginationProps = {
@@ -108,6 +130,8 @@ const fetchProducts = async () => {
     handlePageChange,
     fetchLoading,
     paginatedData: data,
+    changeChartFilter,
+    chartFilter
   }
 
   const tableData: TablePropsType<Product> = {
@@ -126,7 +150,11 @@ const fetchProducts = async () => {
           <div className="w-1/2 max-[900px]:w-full" style={{ transition: "width 0.3s ease" }}>
             <div className="w-full h-full">
               <Suspense fallback={<DotsLoader />}>
-                <BarChart productData={chartData} />
+                <div className="flex justify-center items-center" style={{ maxWidth: 505 }}>
+                  <p>Total Selected - {chartData.length}</p>
+                  <button className="border" onClick={() => setChartData([])}>Remove all selected</button>
+                </div>
+                <BarChart productData={chartData} chartFilter={chartFilter} />
               </Suspense>
             </div>
           </div>

@@ -8,13 +8,7 @@ export const CheckBox = ({ onChange, data, chartData }:{
 }) => {
     return (
         <input
-            onChange={(e) => {
-                if (e.target.checked && chartData.length === 5) {
-                    alert("Max 5 users data will shown in the chart at once");
-                } else {
-                    onChange(`${e.target.checked ? "ADD" : "REMOVE"}`, data);
-                }
-            }}
+            onChange={(e) => onChange(`${e.target.checked ? "ADD" : "REMOVE"}`, data)}
             className="cursor-pointer w-4 h-4"
             type="checkbox"
             value=""

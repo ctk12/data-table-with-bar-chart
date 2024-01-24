@@ -26,5 +26,7 @@ export interface TablePropsType<T extends tableRowExtendObject> {
         handlePageChange: (newPage: number) => void;
         fetchLoading: boolean;
         paginatedData: T[];
+        changeChartFilter: (value: string) => void;
+        chartFilter: string;
     }
 }

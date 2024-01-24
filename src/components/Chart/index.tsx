@@ -10,16 +10,16 @@ const layout = {
   },
   yaxis: {
     title: "Prices",
-    range: [0, 2000]
   },
   responsive: true,
 };
 
-const BarChart = ({ productData }: { productData: Product[] }) => {
+const BarChart = ({ productData, chartFilter }: { productData: Product[], chartFilter: string }) => {
+    layout.yaxis.title = chartFilter;
     const data: Plotly.Data[] = [
         {
             x: productData.length > 0 ? productData.map(product => product.title) : [""],
-            y: productData.map(product => product.price),
+            y: productData.map(product => chartFilter === "Prices" ? product.price : product.rating),
             type: "bar",
             width: 0.4
         },
