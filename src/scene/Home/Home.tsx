@@ -102,7 +102,9 @@ const fetchProducts = async () => {
       [String(pagination.page)]: result.products
     }
   })
-  setChartData(result.products.slice(0, 5));
+  if (pagination.page === 1) {
+    setChartData(result.products.slice(0, 5));
+  }
   setPagination(state => {
     return {
       ...state,
