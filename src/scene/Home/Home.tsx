@@ -72,9 +72,6 @@ useEffect(() => {
     if (init) {
       fetchProducts();
     }
-    if (!init) {
-      setInit(true);
-    }
   }, 1000);
 
   return () => clearTimeout(timeOut);
@@ -102,6 +99,10 @@ const fetchProducts = async () => {
       [String(pagination.page)]: result.products
     }
   })
+  if (!init) {
+    setChartData(result.products.slice(0, 5));
+    setInit(true);
+  }
   setPagination(state => {
     return {
       ...state,
@@ -116,11 +117,6 @@ const fetchProducts = async () => {
   const changeChartFilter = (value: string) => {
     setChartFilter(value)
   }
-
-  useEffect(() => {
-    setChartData(data.slice(0, 5));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const columnsProps = {
     onChange,
