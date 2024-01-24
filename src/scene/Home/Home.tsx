@@ -102,9 +102,6 @@ const fetchProducts = async () => {
       [String(pagination.page)]: result.products
     }
   })
-  if (pagination.page === 1) {
-    setChartData(result.products.slice(0, 5));
-  }
   setPagination(state => {
     return {
       ...state,
@@ -119,6 +116,11 @@ const fetchProducts = async () => {
   const changeChartFilter = (value: string) => {
     setChartFilter(value)
   }
+
+  useEffect(() => {
+    setChartData(data.slice(0, 5));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const columnsProps = {
     onChange,
